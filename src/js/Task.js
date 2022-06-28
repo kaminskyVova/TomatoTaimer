@@ -1,46 +1,53 @@
-class Task {
-    #id;
-    #title;
-    #count;
-    constructor(id, title, count) {
-        this.#id = id;
-        this.#title = title;
-        this.#count = count;
-    }
+import { Tomato, NewTask, NewTask1 } from './Tomato';
 
-    get getIncrementCount() {
-        return console.log(this.#count);
-    }
+export class Task {
+  #id;
+  #title;
+  #count;
+  constructor(id, title, count) {
+    this.#id = id;
+    this.#title = title;
+    this.#count = count;
+  }
 
-    set setIncrementCount(count) {
-        count++
-        this.#count = Number(count)
-    }
+  get getIncrementCount() {
+    return console.log(this.#count);
+  }
 
-    get getTitleVal() {
-        return console.log(this.#title)
-    }
+  set setIncrementCount(count) {
+    count++;
+    this.#count = Number(count);
+  }
 
-    set setTitleVal(title) {
-        this.#title = String(title)
-    }
+  get getTitleVal() {
+    return console.log(this.#title);
+  }
 
-    get getId() {
-        return console.log(this.#id)
-    }
+  set setTitleVal(title) {
+    this.#title = String(title);
+  }
 
-    set setIdVal(id) {
-        this.#id = String(id)
-    }
+  get getId() {
+    return console.log(this.#id);
+  }
+
+  set setIdVal(id) {
+    this.#id = String(id);
+  }
 }
 
-const task = new Task()
+new NewTask({
+  id: 1,
+//   timer: 5,
+//   littlePause: 2,
+  bigPause: '',
+  task: 'hhh',
+});
 
-task.setIncrementCount = 0;
-task.getIncrementCount;
-
-task.setTitleVal = 1234
-task.getTitleVal
-
-task.setIdVal = 12349987
-task.getId
+// new NewTask({
+//   id: 12,
+// //   timer: 2,
+// //   littlePause: 2,
+//   bigPause: '',
+//   task: 'GGGGGGGGGG',
+// },);
