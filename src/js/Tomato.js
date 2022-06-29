@@ -1,52 +1,54 @@
 export class Tomato {
-  constructor(obj) {
-    (this.id = obj.id),
-      (this.timer = 3),
-      (this.littlePause = obj.littlePause),
-      (this.bigPause = obj.bigPause),
-      (this.tasks = []),
-      (this.taskTitle = obj.task),
+  constructor(timer = 3, shortPause = 2, longPause = 4, tasks = [], taskId) {
+    (this.taskId = taskId),
+      (this.timer = timer),
+      (this.shortPause = shortPause),
+      (this.longPause = longPause),
+      (this.tasks = tasks),
       (this.activeTask = null);
   }
 
   setTask(obj) {
-    obj = {
-      id: this.id,
-      // timer: this.timer,
-      taskTitle: this.task,
-    };
+    // obj = {
+    //   id: this.id,
+    //   // timer: this.timer,
+    //   taskTitle: this.task,
+    // };
     this.tasks.push(obj);
     console.log('this.tasks: ', this.tasks);
   }
 
   setActiveTask(task) {
-    task = {
-      id: this.id,
-      // timer: this.timer,
-      task: this.taskTitle,
-    };
-    if (task.id === this.id) {
-      this.activeTask = task;
-    }
+    // task = {
+    //   id: this.id,
+    //   // timer: this.timer,
+    //   task: this.taskTitle,
+    // };
+    // if (task.id === this.id) {
+    //   this.activeTask = task;
+    // }
+    this.activeTask = task;
     console.log('this.activeTask: ', this.activeTask);
-    this.getStartTask()
+    // this.getStartTask();
   }
 
-  getStartTask(countMinute) {
-    console.log(this.timer);
-    countMinute = this.timer;
+  getStartTask() {
+    // console.log(this.timer);
+    let countMinute = this.timer;
     let countSeconds = 5;
-    const timer = setInterval(() => {
-      console.log(`${countMinute} : ${countSeconds}`);
-      countSeconds--;
-      if (countSeconds <= -1) {
-        countMinute--;
-        countSeconds = 5;
-      }
-      if (countMinute <= -1) {
-        clearInterval(timer);
-      }
-    }, 1000);
+    if (this.activeTask != null) {
+      const timer = setInterval(() => {
+        console.log(`${countMinute} : ${countSeconds}`);
+        countSeconds--;
+        if (countSeconds <= -1) {
+          countMinute--;
+          countSeconds = 5;
+        }
+        if (countMinute <= -1) {
+          clearInterval(timer);
+        }
+      }, 1000);
+    }
   }
 }
 
