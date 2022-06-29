@@ -1,66 +1,108 @@
 export class Tomato {
-  constructor(timer = 3, shortPause = 2, longPause = 4, tasks = [], taskId) {
-    (this.taskId = taskId),
-      (this.timer = timer),
-      (this.shortPause = shortPause),
-      (this.longPause = longPause),
-      (this.tasks = tasks),
+  constructor(obj) {
+    console.log('obj: ', obj);
+    (this.taskId = obj.id),
+      (this.taskTitle = obj.taskTitle),
+      (this.timer = 5),
+      (this.shortPause = 2),
+      (this.longPause = 4),
+      (this.tasks = []),
       (this.activeTask = null);
   }
 
   setTask(obj) {
-    // obj = {
-    //   id: this.id,
-    //   // timer: this.timer,
-    //   taskTitle: this.task,
-    // };
+    obj = {
+      taskId: this.taskId,
+      taskTitle: this.taskTitle,
+    };
+    console.log('obj: ', obj);
+
     this.tasks.push(obj);
     console.log('this.tasks: ', this.tasks);
   }
 
   setActiveTask(task) {
-    // task = {
-    //   id: this.id,
-    //   // timer: this.timer,
-    //   task: this.taskTitle,
-    // };
-    // if (task.id === this.id) {
-    //   this.activeTask = task;
-    // }
+    console.log('task: ', task);
+
     this.activeTask = task;
     console.log('this.activeTask: ', this.activeTask);
-    // this.getStartTask();
+    this.getStartTask();
   }
 
   getStartTask() {
-    // console.log(this.timer);
+    console.log('this.timer: ', this.timer);
     let countMinute = this.timer;
     let countSeconds = 5;
-    if (this.activeTask != null) {
-      const timer = setInterval(() => {
-        console.log(`${countMinute} : ${countSeconds}`);
-        countSeconds--;
-        if (countSeconds <= -1) {
-          countMinute--;
-          countSeconds = 5;
-        }
-        if (countMinute <= -1) {
-          clearInterval(timer);
-        }
-      }, 1000);
-    }
+    // if (this.activeTask != null) {
+    //   const timer = setInterval(() => {
+    //     console.log(`${countMinute} : ${countSeconds}`);
+    //     countSeconds--;
+    //     if (countSeconds <= -1) {
+    //       countMinute--;
+    //       countSeconds = 5;
+    //     }
+    //     if (countMinute <= -1) {
+    //       clearInterval(timer);
+    //     }
+    //   }, 1000);
+    // }
   }
 }
 
 export class NewTask extends Tomato {
-  constructor(timer, littlePause, bigPause, task, activeTask, id) {
-    super(timer, littlePause, bigPause, task, activeTask);
-    // this.id = id
-    // this.getStartTask()
-    this.setActiveTask();
-    this.setTask(timer, littlePause, bigPause, task, activeTask, id);
+  #taskId;
+  #taskTitle;
+  #count;
+  constructor(taskId, taskTitle, count) {
+    super(taskId, taskTitle, count);
+    this.#taskId = taskId;
+    this.#taskTitle = taskTitle;
+    this.#count = count;
+    this.setTask();
+  }
+
+  get getIncrementCount() {
+    return console.log(this.#count);
+  }
+
+  set setIncrementCount(count) {
+    count++;
+    this.#count = Number(count);
+  }
+
+  get getTitleVal() {
+    return console.log(this.#taskTitle);
+  }
+
+  set setTitleVal(title) {
+    this.#taskTitle = String(title);
+  }
+
+  get getId() {
+    return console.log(this.#taskId);
+  }
+
+  set setIdVal(id) {
+    this.#taskId = String(id);
   }
 }
+
+// export class NewTask1 extends Tomato {
+//   constructor(taskTitle, id) {
+//     super(taskTitle, id);
+//     this.setActiveTask(taskTitle, id);
+//     this.setTask(taskTitle, id);
+//   }
+// }
+
+// export class NewTask extends Tomato {
+//   constructor(taskTitle, id) {
+//     super(taskTitle, id);
+//     // this.id = id
+//     this.setActiveTask(taskTitle, id);
+//     this.setTask(taskTitle, id);
+//   }
+// }
 
 // export class NewTask1 extends Tomato{
 //   constructor(timer, littlePause, bigPause, tasks, activeTask, id) {
