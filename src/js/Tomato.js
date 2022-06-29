@@ -10,14 +10,10 @@ export class Tomato {
   }
 
   setTask(obj) {
-    obj = {
-      taskId: this.taskId,
-      taskTitle: this.taskTitle,
-    };
     console.log('obj: ', obj);
-
     this.tasks.push(obj);
-    console.log('this.tasks: ', this.tasks);
+    console.log(' this.tasks: ', this.tasks);
+    return this.tasks;
   }
 
   setActiveTask(task) {
@@ -53,15 +49,15 @@ export class NewTask extends Tomato {
   #taskTitle;
   #count;
   constructor(taskId, taskTitle, count) {
-    super(taskId, taskTitle, count = 0);
+    super(taskId, taskTitle, (count = 0));
     this.#taskId = taskId;
     this.#taskTitle = taskTitle;
     this.#count = count;
-    this.setTask();
-    this.setIncrementCount()
-    this.getIncrementCount()
+    this.setTask(this.#taskId, this.#taskTitle);
+    this.setIncrementCount();
+    this.getIncrementCount();
   }
-  
+
   getIncrementCount() {
     return console.log(this.#count);
   }
@@ -87,4 +83,3 @@ export class NewTask extends Tomato {
     this.#taskId = String(id);
   }
 }
-

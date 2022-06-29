@@ -7,11 +7,14 @@ const testArr = [
   },
   {
     taskTitle: 'lllll',
+  },
+  {
+    taskTitle: 'ggggg',
   }
 ]
 
 testArr.forEach((task, index) => new NewTask({
   id: index += 1,
-  taskTitle: task.taskTitle
+  taskTitle: task.taskTitle,
 }))
 
