@@ -1,5 +1,8 @@
 export class Tomato {
   constructor(obj) {
+    if (Tomato._instance) {
+      return Tomato._instance;
+    }
     (this.taskId = obj.id),
       (this.taskTitle = obj.taskTitle),
       (this.timer = 5),
@@ -7,10 +10,16 @@ export class Tomato {
       (this.longPause = 4),
       (this.tasks = []),
       (this.activeTask = null);
+    this.count = 0;
+
+    Tomato._instance = this;
+  }
+
+  execute() {
+    throw new Error('Not implement');
   }
 
   setTask(obj) {
-    console.log('obj: ', obj);
     this.tasks.push(obj);
     console.log(' this.tasks: ', this.tasks);
     return this.tasks;
@@ -44,42 +53,73 @@ export class Tomato {
   }
 }
 
-export class NewTask extends Tomato {
-  #taskId;
-  #taskTitle;
-  #count;
+// };
+
+export class Task extends Tomato {
+
   constructor(taskId, taskTitle, count) {
-    super(taskId, taskTitle, (count = 0));
-    this.#taskId = taskId;
-    this.#taskTitle = taskTitle;
-    this.#count = count;
-    this.setTask(this.#taskId, this.#taskTitle);
-    this.setIncrementCount();
-    this.getIncrementCount();
+    super(taskId, taskTitle, count);
+
+    this.setTask(taskId, taskTitle, (count = 0));
   }
 
   getIncrementCount() {
-    return console.log(this.#count);
+    return console.log(this.count);
   }
 
-  setIncrementCount(count = this.#count) {
+  setIncrementCount(count = this.count) {
     count++;
-    this.#count = Number(count);
+    this.count = Number(count);
   }
 
   get getTitleVal() {
-    return console.log(this.#taskTitle);
+    this.tasks.forEach((task) => {
+      return console.log(`${task.taskTitle}: ${task.importance}`);
+    });
   }
 
   set setTitleVal(title) {
-    this.#taskTitle = String(title);
+    this.taskTitle = String(title);
   }
 
   get getId() {
-    return console.log(this.#taskId);
+    return console.log(this.taskId);
   }
 
   set setIdVal(id) {
-    this.#taskId = String(id);
+    this.taskId = String(id);
   }
+}
+
+export class NewTask extends Task {
+  execute() {
+    if (this.taskTitle === null) {
+      console.log('Добавьте название задачи!!!');
+      return;
+    }
+    //  else {
+    //   new NewTask(obj)
+    // }
+  }
+  constructor(taskId, taskTitle, count, importance) {
+    super(taskId, taskTitle, count);
+    this.importance = importance;
+    this.getTitleVal;
+    this.setIncrementCount();
+    this.getIncrementCount();
+  }
+}
+
+export class AddNewTask extends NewTask {
+  execute() {
+    if (this.taskTitle === null) {
+      console.warn('Добавьте название задачи!!!');
+      return;
+    }
+    new NewTask(obj);
+  }
+  // constructor(taskId, taskTitle, count, importance){
+  //   super(taskId, taskTitle, count)
+  //   console.log('taskTitle: ', taskTitle);
+  // }
 }
