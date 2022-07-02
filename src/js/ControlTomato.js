@@ -66,36 +66,38 @@ export class ControlTomato {
 
   getSetTimer() {
     const timerCount = document.querySelector('.window__timer-text');
+    const title = document.querySelector('.window__panel-title');
 
     let countMinute = 24;
     let countSeconds = 60;
     let timer = null;
 
     const btnStart = document.querySelector('.button-primary');
-    const stopBtn = document.querySelector('.button-secondary')
+    const stopBtn = document.querySelector('.button-secondary');
 
     btnStart.addEventListener('click', () => {
-      btnStart.disabled = true
-      btnStart.style.backgroundColor = 'grey'
-      timer = setInterval(() => {
-        timerCount.textContent = `${countMinute} : ${countSeconds}`;
-        countSeconds--;
-        if (countSeconds <= -1) {
-          countMinute--;
-          countSeconds = 60;
-        }
-        if (countMinute <= -1) {
-          clearInterval(timer);
-        }
-      }, 1000);
+      if (title.textContent != 'Сверстать сайт') {
+        btnStart.disabled = true;
+        btnStart.style.backgroundColor = 'grey';
+        timer = setInterval(() => {
+          timerCount.textContent = `${countMinute} : ${countSeconds}`;
+          countSeconds--;
+          if (countSeconds <= -1) {
+            countMinute--;
+            countSeconds = 60;
+          }
+          if (countMinute <= -1) {
+            clearInterval(timer);
+          }
+        }, 1000);
+      }
     });
 
     stopBtn.addEventListener('click', () => {
-      btnStart.disabled = false
-      btnStart.style.backgroundColor = '#cc0017'
-      
-      clearInterval(timer)
-    })
-  }
+      btnStart.disabled = false;
+      btnStart.style.backgroundColor = '#cc0017';
 
+      clearInterval(timer);
+    });
+  }
 }
