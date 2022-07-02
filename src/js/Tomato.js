@@ -1,15 +1,15 @@
 export class Tomato {
-  constructor(obj) {
+  constructor(obj = {}) {
     if (Tomato._instance) {
       return Tomato._instance;
     }
-    (this.taskId = obj.id),
-      (this.taskTitle = obj.taskTitle),
-      (this.timer = 5),
-      (this.shortPause = 2),
-      (this.longPause = 4),
-      (this.tasks = []),
-      (this.activeTask = null);
+    this.taskId = obj.id,
+      this.taskTitle = obj.taskTitle,
+      this.timer = 5,
+      this.shortPause = 2,
+      this.longPause = 4,
+      this.tasks = [],
+      this.activeTask = null;
     this.count = 0;
 
     Tomato._instance = this;
@@ -95,18 +95,17 @@ export class NewTask extends Task {
   execute() {
     if (this.taskTitle === null) {
       console.log('Добавьте название задачи!!!');
+      this.setIncrementCount();
+      this.getIncrementCount();
       return;
     }
-    //  else {
-    //   new NewTask(obj)
-    // }
   }
   constructor(taskId, taskTitle, count, importance) {
     super(taskId, taskTitle, count);
     this.importance = importance;
     this.getTitleVal;
-    this.setIncrementCount();
-    this.getIncrementCount();
+    // this.setIncrementCount();
+    // this.getIncrementCount();
   }
 }
 
