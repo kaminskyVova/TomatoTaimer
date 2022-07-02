@@ -25,41 +25,9 @@ export class Tomato {
     console.log(' this.tasks: ', this.tasks);
     return this.tasks;
   }
-
-  // setActiveTask(task) {
-  //   const liItems = document.querySelectorAll('.pomodoro-tasks__task-text')
-
-  //   if(liItems) {
-  //     liItems.forEach(item => {
-  //       item.addEventListener('click', ({target}) => {
-  //         console.log('target: ', target);
-  //       })
-  //     })
-  //   }
-  // }
-
-  // getStartTask() {
-  //   console.log('this.timer: ', this.timer);
-  //   let countMinute = this.timer;
-  //   let countSeconds = 5;
-  //   // if (this.activeTask != null) {
-  //   //   const timer = setInterval(() => {
-  //   //     console.log(`${countMinute} : ${countSeconds}`);
-  //   //     countSeconds--;
-  //   //     if (countSeconds <= -1) {
-  //   //       countMinute--;
-  //   //       countSeconds = 5;
-  //   //     }
-  //   //     if (countMinute <= -1) {
-  //   //       clearInterval(timer);
-  //   //     }
-  //   //   }, 1000);
-  //   // }
-  // }
-
 }
 
-// };
+
 
 export class Task extends Tomato {
 
@@ -110,8 +78,6 @@ export class NewTask extends Task {
     super(taskId, taskTitle, count);
     this.importance = importance;
     this.getTitleVal;
-    // this.setIncrementCount();
-    // this.getIncrementCount();
   }
 }
 
@@ -123,8 +89,4 @@ export class AddNewTask extends NewTask {
     }
     new NewTask(obj);
   }
-  // constructor(taskId, taskTitle, count, importance){
-  //   super(taskId, taskTitle, count)
-  //   console.log('taskTitle: ', taskTitle);
-  // }
 }

@@ -1,6 +1,4 @@
-import { el, setChildren } from 'redom';
 import { Tomato } from './Tomato';
-
 import {ControlTomato} from './ControlTomato'
 
 
@@ -55,10 +53,7 @@ export class RenderTomato {
 
   createTask() {
     const tasksFromTomato = new Tomato();
-    console.log('tasksFromTomato: ', tasksFromTomato.tasks);
-
     const tasksList = document.querySelector('.pomodoro-tasks__quest-tasks');
-
 		const prevItemList = document.querySelectorAll('.pomodoro-tasks__list-task')
 
 		prevItemList.forEach(li => {
@@ -66,7 +61,6 @@ export class RenderTomato {
 		})
 
     tasksFromTomato.tasks.forEach((task) => {
-      console.log('task: ', task);
       tasksList.insertAdjacentHTML(
         'beforeend',
         `
@@ -105,7 +99,6 @@ export class RenderTomato {
     );
 
     openCloseBtns.forEach((btn) => {
-			console.log('btn: ', btn);
       btn.addEventListener('click', ({ target }) => {
 				target.nextElementSibling.classList.toggle('burger-popup_active');
       });

@@ -4,11 +4,8 @@ export class ControlTomato {
   constructor() {
     this.color = null;
     this.taskArray = [];
-    // this.countMinute = 24;
-    // this.countSeconds = 60;
 
     this.addTaskToArray();
-    // this.startTimer()
     this.getSetTimer();
   }
 
@@ -34,7 +31,6 @@ export class ControlTomato {
         };
 
         this.taskArray.push(obj);
-        console.log('this.taskArray: ', this.taskArray);
 
         new AddNewTask({
           id: id,
