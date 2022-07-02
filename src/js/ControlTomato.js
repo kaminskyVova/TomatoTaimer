@@ -5,7 +5,7 @@ export class ControlTomato {
     this.color = null;
     this.taskArray = [];
     this.addTaskToArray();
-    this.addToPage()
+    // this.addToPage()
   }
 
   addTaskToArray() {
@@ -36,9 +36,11 @@ export class ControlTomato {
       change();
     });
 
+    let id = 0
+
     addBtn.addEventListener('click', (e) => {
       e.preventDefault();
-
+      id++
       obj = {
         taskTitle: input.value,
         importance: this.color,
@@ -47,7 +49,13 @@ export class ControlTomato {
 
       this.taskArray.push(obj);
       console.log('this.taskArray: ', this.taskArray);
-      this.addToPage()
+      
+      // this.addToPage()
+      new AddNewTask({
+        id: id,
+        taskTitle: obj.taskTitle,
+        importance: obj.importance,
+      })
     });
   }
 

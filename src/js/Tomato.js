@@ -1,3 +1,5 @@
+import { RenderTomato } from "./RenderTomato";
+
 export class Tomato {
   constructor(obj = {}) {
     if (Tomato._instance) {
@@ -22,6 +24,7 @@ export class Tomato {
   setTask(obj) {
     this.tasks.push(obj);
     console.log(' this.tasks: ', this.tasks);
+
     return this.tasks;
   }
 

@@ -8,6 +8,7 @@ import {ControlTomato} from './ControlTomato'
 export class RenderTomato {
   constructor() {
     this.render();
+		
   }
 
   createTimerGroup() {
@@ -76,8 +77,8 @@ export class RenderTomato {
 			</li>
 			`
       );
-      // this.popupMenuControl()
     });
+		this.createTask()
   }
 
   popupMenuControl() {
@@ -96,7 +97,7 @@ export class RenderTomato {
   render() {
     this.createTimerGroup();
     this.createAddTaskForm();
-    this.createTask();
+    // this.createTask();
     this.popupMenuControl();
 		new ControlTomato
   }
