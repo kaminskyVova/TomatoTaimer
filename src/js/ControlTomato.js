@@ -86,6 +86,8 @@ export class ControlTomato {
             clearInterval(timer);
           }
         }, 1000);
+      } else {
+        alert('Добавьте активную задачу клинкув по ней!')
       }
     });
 
