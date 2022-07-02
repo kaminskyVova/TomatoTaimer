@@ -45,19 +45,27 @@ export class ControlTomato {
   }
 
   change() {
-    const colorsArr = ['so-so', 'default', 'important'];
-    const importanceBtn = document.querySelector('.button-importance');
-    const randomColor = Math.floor(Math.random() * colorsArr.length);
-
-    const color = colorsArr[randomColor];
-
-    importanceBtn.classList.toggle(`${color}`);
-
-    if (importanceBtn.classList.contains(`${color}`)) {
-      importanceBtn.classList.remove(`${color}`);
-      importanceBtn.classList.add(`${color}`);
-      this.color = color;
-    }
+    document.addEventListener('click', e => {
+      const target = e.target;
+      if (target.closest('.button-importance')){
+        if (target.closest('.default')) {
+          target.classList.remove('default');
+          target.classList.add('so-so');
+          console.log('yellow');
+        } 
+        else if (target.closest('.so-so')) {
+          console.log('target: ', target);
+          target.classList.remove('so-so');
+          target.classList.add('important');
+          console.log('red');
+          console.log('target: ', target);
+        } 
+        else if(target.closest('.important')) {
+          target.classList.remove('important')
+          target.classList.add('default')
+        }
+      }
+    });
   }
 
   getSetTimer() {
@@ -87,7 +95,7 @@ export class ControlTomato {
           }
         }, 1000);
       } else {
-        alert('Добавьте активную задачу клинкув по ней!')
+        alert('Добавьте активную задачу клинкув по ней!');
       }
     });
 
