@@ -5,13 +5,13 @@ export class ControlTomato {
     this.color = null;
     this.taskArray = [];
     this.addTaskToArray();
-    // this.addToPage()
   }
 
   addTaskToArray() {
     const input = document.querySelector('.task-name');
     const addBtn = document.querySelector('.task-form__add-button');
     let obj = {};
+    let id = 0;
 
     const importanceBtn = document.querySelector('.button-importance');
 
@@ -36,7 +36,6 @@ export class ControlTomato {
       change();
     });
 
-    let id = 0
 
     addBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -45,27 +44,18 @@ export class ControlTomato {
         taskTitle: input.value,
         importance: this.color,
       };
-      console.log('obj: ', obj);
 
       this.taskArray.push(obj);
       console.log('this.taskArray: ', this.taskArray);
       
-      // this.addToPage()
       new AddNewTask({
         id: id,
         taskTitle: obj.taskTitle,
         importance: obj.importance,
       })
+
+      input.value = ''
     });
   }
 
-  addToPage() {
-    this.taskArray.forEach( (task,index) => {
-      new AddNewTask({
-        id: (index += 1),
-        taskTitle: task.taskTitle,
-        importance: task.importance,
-      })
-    });
-  }
 }

@@ -78,7 +78,6 @@ export class RenderTomato {
 			`
       );
     });
-		this.createTask()
   }
 
   popupMenuControl() {
