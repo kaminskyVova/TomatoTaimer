@@ -94,15 +94,19 @@ export class RenderTomato {
 
 		btn.addEventListener('click', ()=>{
 			this.createTask()
+			this.popupMenuControl();
 		})
 	}
 
   popupMenuControl() {
+
+		console.log(111);
     const openCloseBtns = document.querySelectorAll(
       '.pomodoro-tasks__task-button'
     );
 
     openCloseBtns.forEach((btn) => {
+			console.log('btn: ', btn);
       btn.addEventListener('click', ({ target }) => {
 				target.nextElementSibling.classList.toggle('burger-popup_active');
       });
@@ -113,8 +117,6 @@ export class RenderTomato {
   render() {
     this.createTimerGroup();
     this.createAddTaskForm();
-    // this.createTask();
-    this.popupMenuControl();
 		new ControlTomato
   }
 }
