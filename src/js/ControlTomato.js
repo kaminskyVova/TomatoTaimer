@@ -55,6 +55,7 @@ export class ControlTomato {
       })
 
       input.value = ''
+      
     });
   }
 

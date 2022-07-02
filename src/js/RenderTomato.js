@@ -8,6 +8,7 @@ import {ControlTomato} from './ControlTomato'
 export class RenderTomato {
   constructor() {
     this.render();
+		this.addToPage()
 		
   }
 
@@ -78,7 +79,17 @@ export class RenderTomato {
 			`
       );
     });
+
+		
   }
+
+	addToPage() {
+		const btn = document.querySelector('.task-form__add-button')
+
+		btn.addEventListener('click', ()=>{
+			this.createTask()
+		})
+	}
 
   popupMenuControl() {
     const openCloseBtns = document.querySelectorAll(
