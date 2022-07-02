@@ -59,6 +59,12 @@ export class RenderTomato {
 
     const tasksList = document.querySelector('.pomodoro-tasks__quest-tasks');
 
+		const prevItemList = document.querySelectorAll('.pomodoro-tasks__list-task')
+
+		prevItemList.forEach(li => {
+			li.remove()
+		})
+
     tasksFromTomato.tasks.forEach((task) => {
       console.log('task: ', task);
       tasksList.insertAdjacentHTML(

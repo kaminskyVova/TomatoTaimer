@@ -39,21 +39,24 @@ export class ControlTomato {
 
     addBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      id++
-      obj = {
-        taskTitle: input.value,
-        importance: this.color,
-      };
+      if(input.value.length) {
+        id++
+        obj = {
+          taskTitle: input.value,
+          importance: this.color,
+        };
 
-      this.taskArray.push(obj);
-      console.log('this.taskArray: ', this.taskArray);
-      
-      new AddNewTask({
-        id: id,
-        taskTitle: obj.taskTitle,
-        importance: obj.importance,
-      })
-
+        this.taskArray.push(obj);
+        console.log('this.taskArray: ', this.taskArray);
+        
+          new AddNewTask({
+            id: id,
+            taskTitle: obj.taskTitle,
+            importance: obj.importance,
+          })
+      } else {
+        alert('Добавьте задачу!')
+      }
       input.value = ''
       
     });
