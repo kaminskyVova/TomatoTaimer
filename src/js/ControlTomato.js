@@ -7,6 +7,7 @@ export class ControlTomato {
 
     this.addTaskToArray();
     this.getSetTimer();
+    this.change()
   }
 
   addTaskToArray() {
@@ -15,11 +16,6 @@ export class ControlTomato {
     let obj = {};
     let id = 0;
 
-    const importanceBtn = document.querySelector('.button-importance');
-
-    importanceBtn.addEventListener('click', () => {
-      this.change();
-    });
 
     addBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -45,24 +41,21 @@ export class ControlTomato {
   }
 
   change() {
-    document.addEventListener('click', e => {
+    document.addEventListener('click', (e) => {
       const target = e.target;
-      if (target.closest('.button-importance')){
+      if (target.closest('.button-importance')) {
         if (target.closest('.default')) {
           target.classList.remove('default');
           target.classList.add('so-so');
-          console.log('yellow');
-        } 
-        else if (target.closest('.so-so')) {
-          console.log('target: ', target);
+          this.color = 'so-so'
+        } else if (target.closest('.so-so')) {
           target.classList.remove('so-so');
           target.classList.add('important');
-          console.log('red');
-          console.log('target: ', target);
-        } 
-        else if(target.closest('.important')) {
-          target.classList.remove('important')
-          target.classList.add('default')
+          this.color = 'important'
+        } else if (target.closest('.important')) {
+          target.classList.remove('important');
+          target.classList.add('default');
+          this.color = 'default'
         }
       }
     });
