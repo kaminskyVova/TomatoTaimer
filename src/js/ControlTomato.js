@@ -4,7 +4,12 @@ export class ControlTomato {
   constructor() {
     this.color = null;
     this.taskArray = [];
+    // this.countMinute = 24;
+    // this.countSeconds = 60;
+
     this.addTaskToArray();
+    // this.startTimer()
+    this.getSetTimer();
   }
 
   addTaskToArray() {
@@ -15,32 +20,14 @@ export class ControlTomato {
 
     const importanceBtn = document.querySelector('.button-importance');
 
-    const change = () => {
-      const colorsArr = ['so-so', 'default', 'important'];
-
-      const randomColor = Math.floor(Math.random() * colorsArr.length);
-
-      const color = colorsArr[randomColor];
-
-      this.color = color;
-
-      importanceBtn.classList.toggle(`${color}`);
-
-      if (importanceBtn.classList.contains(`${color}`)) {
-        importanceBtn.classList.remove(`${color}`);
-        importanceBtn.classList.add(`${color}`);
-      }
-    };
-
     importanceBtn.addEventListener('click', () => {
-      change();
+      this.change();
     });
-
 
     addBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      if(input.value.length) {
-        id++
+      if (input.value.length) {
+        id++;
         obj = {
           taskTitle: input.value,
           importance: this.color,
@@ -48,18 +35,67 @@ export class ControlTomato {
 
         this.taskArray.push(obj);
         console.log('this.taskArray: ', this.taskArray);
-        
-          new AddNewTask({
-            id: id,
-            taskTitle: obj.taskTitle,
-            importance: obj.importance,
-          })
+
+        new AddNewTask({
+          id: id,
+          taskTitle: obj.taskTitle,
+          importance: obj.importance,
+        });
       } else {
-        alert('Добавьте задачу!')
+        alert('Добавьте задачу!');
       }
-      input.value = ''
-      
+      input.value = '';
     });
+  }
+
+  change() {
+    const colorsArr = ['so-so', 'default', 'important'];
+    const importanceBtn = document.querySelector('.button-importance');
+    const randomColor = Math.floor(Math.random() * colorsArr.length);
+
+    const color = colorsArr[randomColor];
+
+    importanceBtn.classList.toggle(`${color}`);
+
+    if (importanceBtn.classList.contains(`${color}`)) {
+      importanceBtn.classList.remove(`${color}`);
+      importanceBtn.classList.add(`${color}`);
+      this.color = color;
+    }
+  }
+
+  getSetTimer() {
+    const timerCount = document.querySelector('.window__timer-text');
+
+    let countMinute = 24;
+    let countSeconds = 60;
+    let timer = null;
+
+    const btnStart = document.querySelector('.button-primary');
+    const stopBtn = document.querySelector('.button-secondary')
+
+    btnStart.addEventListener('click', () => {
+      btnStart.disabled = true
+      btnStart.style.backgroundColor = 'grey'
+      timer = setInterval(() => {
+        timerCount.textContent = `${countMinute} : ${countSeconds}`;
+        countSeconds--;
+        if (countSeconds <= -1) {
+          countMinute--;
+          countSeconds = 60;
+        }
+        if (countMinute <= -1) {
+          clearInterval(timer);
+        }
+      }, 1000);
+    });
+
+    stopBtn.addEventListener('click', () => {
+      btnStart.disabled = false
+      btnStart.style.backgroundColor = '#cc0017'
+      
+      clearInterval(timer)
+    })
   }
 
 }

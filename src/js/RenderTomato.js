@@ -15,7 +15,7 @@ export class RenderTomato {
   createTimerGroup() {
     const timer = document.createElement('p');
     timer.classList.add('window__timer-text');
-    timer.textContent = '22:30';
+    timer.textContent = '25:00';
 
     const buttonGroup = document.createElement('div');
     buttonGroup.classList.add('window__buttons');
@@ -95,12 +95,11 @@ export class RenderTomato {
 		btn.addEventListener('click', ()=>{
 			this.createTask()
 			this.popupMenuControl();
+			this.setActiveTask()
 		})
 	}
 
   popupMenuControl() {
-
-		console.log(111);
     const openCloseBtns = document.querySelectorAll(
       '.pomodoro-tasks__task-button'
     );
@@ -111,8 +110,25 @@ export class RenderTomato {
 				target.nextElementSibling.classList.toggle('burger-popup_active');
       });
     });
-
   }
+
+	setActiveTask(task) {
+    const liItems = document.querySelectorAll('.pomodoro-tasks__task-text')
+		const title = document.querySelector('.window__panel-title')
+		const taskNum = document.querySelector('.window__panel-task-text')
+
+
+    if(liItems) {
+      liItems.forEach((item, index)=> {
+        item.addEventListener('click', ({target}) => {
+					title.textContent = target.textContent
+					taskNum.textContent = `Томат: ${index += 1}`
+        })
+      })
+    }
+  }
+
+
 
   render() {
     this.createTimerGroup();

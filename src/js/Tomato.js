@@ -1,5 +1,3 @@
-import { RenderTomato } from "./RenderTomato";
-
 export class Tomato {
   constructor(obj = {}) {
     if (Tomato._instance) {
@@ -15,6 +13,7 @@ export class Tomato {
     this.count = 0;
 
     Tomato._instance = this;
+
   }
 
   execute() {
@@ -27,32 +26,37 @@ export class Tomato {
     return this.tasks;
   }
 
-  setActiveTask(task) {
-    console.log('task: ', task);
+  // setActiveTask(task) {
+  //   const liItems = document.querySelectorAll('.pomodoro-tasks__task-text')
 
-    this.activeTask = task;
-    console.log('this.activeTask: ', this.activeTask);
-    this.getStartTask();
-  }
+  //   if(liItems) {
+  //     liItems.forEach(item => {
+  //       item.addEventListener('click', ({target}) => {
+  //         console.log('target: ', target);
+  //       })
+  //     })
+  //   }
+  // }
 
-  getStartTask() {
-    console.log('this.timer: ', this.timer);
-    let countMinute = this.timer;
-    let countSeconds = 5;
-    // if (this.activeTask != null) {
-    //   const timer = setInterval(() => {
-    //     console.log(`${countMinute} : ${countSeconds}`);
-    //     countSeconds--;
-    //     if (countSeconds <= -1) {
-    //       countMinute--;
-    //       countSeconds = 5;
-    //     }
-    //     if (countMinute <= -1) {
-    //       clearInterval(timer);
-    //     }
-    //   }, 1000);
-    // }
-  }
+  // getStartTask() {
+  //   console.log('this.timer: ', this.timer);
+  //   let countMinute = this.timer;
+  //   let countSeconds = 5;
+  //   // if (this.activeTask != null) {
+  //   //   const timer = setInterval(() => {
+  //   //     console.log(`${countMinute} : ${countSeconds}`);
+  //   //     countSeconds--;
+  //   //     if (countSeconds <= -1) {
+  //   //       countMinute--;
+  //   //       countSeconds = 5;
+  //   //     }
+  //   //     if (countMinute <= -1) {
+  //   //       clearInterval(timer);
+  //   //     }
+  //   //   }, 1000);
+  //   // }
+  // }
+
 }
 
 // };
