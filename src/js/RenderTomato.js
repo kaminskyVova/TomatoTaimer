@@ -85,10 +85,6 @@ export class RenderTomato {
       '.pomodoro-tasks__task-button'
     );
 
-    let burger = document.querySelector(
-      '.pomodoro-tasks__task-button'
-    ).nextElementSibling;
-
     openCloseBtns.forEach((btn) => {
       btn.addEventListener('click', ({ target }) => {
 				target.nextElementSibling.classList.toggle('burger-popup_active');
